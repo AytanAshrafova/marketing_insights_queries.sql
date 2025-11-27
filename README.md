@@ -8,7 +8,61 @@ Sorğular bir neçə kateqoriyaya bölünmüşdür:
 3. Məhsul və Kateqoriya Analizi
 4. Endirim və Marketinq Xərcləri Analizi
 5. Əlavə Analitiklər
-
+---------------------------------------
 1. Chicago şəhərində olan müştərilər
+------------------------------------
    SELECT * FROM public.customerdata
 WHERE Location = 'Chicago';
+
+---------------------------------------
+2. Endirim istifadə olunan sifarişlər
+----------------------------------------
+Coupon istifadə olunan bütün sifarişləri tapır
+SELECT * FROM public.online_sales
+WHERE Coupon_Status = 'Used';
+
+---------------------------------------
+
+3. Ümumi sifariş sayı
+----------------------------------
+-- Bütün sifarişlərin sayını hesablayır
+SELECT COUNT(Transaction_ID) AS Total_Orders
+FROM public.online_sales; 
+
+------------------------------------
+4. Ümumi müştəri sayı                                      
+-------------------------
+ Unikal müştərilərin sayını hesablayır
+SELECT COUNT(DISTINCT CustomerID) AS Total_Customers
+FROM public.online_sales;  
+
+---------------------------------
+5. Hər category üzrə satış sayı
+----------------------------------
+
+Məhsul kateqoriyaları üzrə sifarişlərin sayını hesablayır
+SELECT Product_Category, COUNT(Transaction_ID) AS Total_Orders
+FROM public.online_sales
+GROUP BY Product_Category
+ORDER BY Total_Orders DESC;
+
+-----------------------------------------------------------
+
+6. Hər məhsul üzrə satılan Quantity
+-- ==================================================================
+-- Hər məhsul üzrə ümumi satılan miqdarı hesablayır
+SELECT Product_Description, SUM(Quantity) AS Total_Quantity
+FROM public.online_sales
+GROUP BY Product_Description
+ORDER BY Total_Quantity DESC;
+
+-------------------------------------------------------
+ 7. Hər müştərinin neçə dəfə alış etdiyi (Frequency)
+-------------------------------------------------------
+-- Hər müştərinin sifariş sayını hesablayır
+SELECT CustomerID, COUNT(Transaction_ID) AS Frequency
+FROM public.online_sales
+GROUP BY CustomerID
+ORDER BY Frequency DESC;
+
+----------------------------------------------------
