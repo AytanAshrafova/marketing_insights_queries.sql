@@ -2,7 +2,7 @@ Marketing Insights for E-Commerce
 -------------------------------------------
 Layihə Haqqında
 -------------------------
-Bu layihə e-commerce biznesində satış performansını, müştəri davranışlarını və marketinq xərclərinin təsirini analiz etmək məqsədilə hazırlanmışdır. Raw CSV datasetləri əvvəlcə PostgreSQL-ə yüklənmiş, burada data cleaning, transformasiya və analitik SQL sorğuları icra olunmuşdur. Satış trendləri, RFM, LTV, cohort analizi, next purchase day və market basket analizi kimi əsas metriklər SQL vasitəsilə hesablanmışdır.
+Bu layihə e-commerce biznesində satış performansını, müştəri davranışlarını və marketinq xərclərinin təsirini analiz etmək məqsədilə hazırlanmışdır. CSV datasetləri əvvəlcə PostgreSQL-ə yüklənmiş, burada data cleaning, transformasiya və analitik SQL sorğuları icra olunmuşdur. Satış trendləri, RFM, LTV, cohort analizi, next purchase day və market basket analizi kimi əsas metriklər SQL vasitəsilə hesablanmışdır.
 Analiz nəticələri daha sonra Power BI-də interaktiv dashboard formatında vizuallaşdırılmışdır. Dashboardlar satış və gəlir dinamikasını, müştəri seqmentlərini, marketinq ROI-ni və cross-selling imkanlarını aydın şəkildə göstərir. Bu analitik panel biznes üçün qərar qəbuletmədə real dəyər yaradan insights təqdim edir.
 
 -------------------------------------------------------------
