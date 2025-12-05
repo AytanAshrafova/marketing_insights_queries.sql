@@ -1,94 +1,82 @@
-
- 🛒 Marketing Insights for E-Commerce
- 📊 Layihə Haqqında
-
-Bu layihə, e-commerce şirkətinin satış, müştəri davranışı və marketinq xərcləri üzərində aparılmış SQL əsaslı analitik tədqiqatdır.PostgreSQL istifadə edilərək tranzaksiya səviyyəsində təhlil aparılmış, müştəri segmentasiyası, satış tendensiyaları və gəlir mənbələri müəyyən edilmişdir.
-
-Məqsəd:
-
-1 Satış və gəlir performansını izləmək
-2 Müştəri segmentasiyasını müəyyənləşdirmək
-3 Marketinq xərclərinin effektivliyini ölçmək
-4 Məhsul və kateqoriyalara görə satış trendini anlamaq
-
-🧩 Datasetlər
-
-| Dataset                 | Təsviri                                                                        |
-| ----------------------- | ------------------------------------------------------------------------------ |
-| Customers_Data.csv      | Müştərilərin demoqrafik məlumatları (ID, Gender, Location, Tenure)             |
-| Online_Sales.csv        | Tranzaksiya məlumatları (ID, Date, Product, Quantity, Price, Delivery, Coupon) |
-| Discount_Coupon.csv     | Endirim kuponları (Ay, Məhsul Kateqoriyası, Kupon Kodu, Faiz)                  |
-| Marketing_Spend.csv     | Offline & online marketinq xərcləri                                            |
-|Tax_Amount.csv           | GST faizləri kateqoriyalara görə                                               |
-
- 🔹 Key Insights
-1️⃣ Satış və Gəlir Analizi
-
-Aylıq və kateqoriyalara görə satış və gəlir izlənildi.
-Ən çox gəlir gətirən məhsullar və kateqoriyalar müəyyən edildi.
-Endirimlərin gəlirə təsiri analiz edildi.
-Satışlar müəyyən aylarda və xüsusi günlərdə pik həddə çatır
-
-Metodlar:
-
- Invoice Value hesablaması:
-  `Invoice Value = ((Quantity * Avg_Price) * (1 - Discount_pct)) * (1 + GST) + Delivery_Charges`
- Average Order Value, Profit Margin və Purchase Frequency ölçüldü.
-
-2️⃣ Müştəri Segmentasiyası (RFM və LTV)
-
-RFM Segmentasiyası ilə müştərilər Premium, Gold, Silver və Standard qruplarına ayrıldı.
-
-Recency: Son alış tarixi
-Frequency: Alış sayı
-Monetary: Xərclənən məbləğ
-LTV Analizi   Müştərilərin uzunmüddətli gəlir potensialı müəyyən edildi.
-
-   Yüksək LTV → uzunmüddətli prioritet müştəri
-   Orta və aşağı LTV → uyğun strategiyalar üçün hədəfləndi
-
- 3️⃣ Next Purchase Day Analizi
-
- Müştərinin növbəti alışını proqnozlaşdırmaq üçün ortalama alış intervalı hesablandı.
- Müştərilər qruplaşdırıldı:
-
-   0–30 gün, 30–60 gün, 60+ gün
- Bu, marketing kampaniyalarının vaxtını optimallaşdırmağa imkan verir.
-
-4️⃣ Cohort Analizi
-
- Müştərilər ilk alış etdikləri aya görə qruplaşdırıldı.
- Retention və alış tendensiyaları izlənildi.
- Hər ayın cohortu üzrə müştəri davranış nümunələri və retention strategiyaları müəyyən edildi.
-
- 5️⃣ Market Basket / Cross-Selling Analizi
-
- Hangi məhsulların birgə satın alındığı müəyyən edildi.
-Ən çox birlikdə alınan məhsullar marketinq və bundle kampaniyaları üçün prioritetləndirildi.
-
- 6️⃣ Marketinq və Gəlir Təsiri
-
- Aylıq marketing spend və gəlir müqayisəsi aparıldı.
- Marketing spend-in gəlirə təsiri faizlə göstərildi.
- Online vs Offline xərclərin effektivliyi analiz edildi.
-
+ Marketing Insights for E-Commerce
  
+ Layihə Haqqında
+Bu layihə, e-commerce şirkətinin satış, müştəri davranışı və marketinq xərcləri üzrə SQL əsaslı analitik təhlilini əhatə edir. PostgreSQL istifadə edilərək tranzaksiya səviyyəsində analiz aparılmış, satış tendensiyaları, müştəri dəyərləri, marketinq efekti və gəlir mənbələri dəqiq şəkildə müəyyən edilmişdir.
 
-🔹 Əsas KPI-lar və Hesablamalar
+ Layihənin Məqsədi
+ Satış və gəlir performansını izləmək
+ Müştəri segmentasiyasını müəyyənləşdirmək (RFM & LTV)
+ Marketinq xərclərinin effektivliyini ölçmək
+ Məhsul və kateqoriyalara görə satış trendini təhlil etmək
 
-Revenue: Hər tranzaksiya üzrə gəlir
-Average Order Value: Müştəri başına orta sifariş məbləği
-Profit Margin: Satışın qazanc faizi
-Purchase Frequency: Müştərinin orta alış sayı
-Repeat Rate: Təkrar alış edən müştərilərin faizi
-Churn Rate: Müştərilərin illik abonent dayandırma faizi
-Customer Lifetime Value (LTV): Müştərinin uzunmüddətli monetar dəyəri
+ Datasetlər
+Dataset	Təsviri
+Customers_Data.csv	Müştərilərin demoqrafik məlumatları (ID, Gender, Location, Tenure)
+Online_Sales.csv	Tranzaksiya məlumatları (Product, Quantity, Price, Delivery, Coupon və s.)
+Discount_Coupon.csv	Kupon kodları və endirim faizləri
+Marketing_Spend.csv	Offline və online marketinq xərcləri
+Tax_Amount.csv	GST faizləri kateqoriyalara görə
 
-🔹 Business Impact
+ Key Insights
+ Satış və Gəlir Analizi
+Aylıq və kateqoriyalara görə satış və gəlir izlənildi.
+Ən çox gəlir gətirən məhsullar müəyyən edildi.
+Endirimlərin gəlirə təsiri təhlil edildi.
+Satışların pik həddə çatdığı ay və günlər aşkarlandı.
+Metodlar:
+Invoice Value hesablaması:
+Invoice Value = ((Quantity * Avg_Price) * (1 - Discount_pct)) * (1 + GST) + Delivery_Charges
+Average Order Value
+Profit Margin
+Purchase Frequency
 
-Müştəri segmentasiyası marketinq strategiyasını optimallaşdırdı.
-Endirim və kampaniyaların gəlir üzərində təsiri izlənildi.
-Cohort və Next Purchase Day analizi ilə müştəri retention artırıldı.
- Market Basket analizi ilə cross-selling və bundling imkanları müəyyən edildi.
+ Müştəri Segmentasiyası (RFM və LTV)
+RFM parametrləri:
+Recency – son alış tarixi
+Frequency – alış sayı
+Monetary – xərclənmiş məbləğ
 
+Müştərilər belə qruplaşdırıldı:
 
+Premium
+Gold
+Silver
+Standard
+
+LTV Analizi:
+Yüksək LTV → uzunmüddətli dəyərli müştərilər
+Orta/Aşağı LTV → hədəf kampaniyalar üçün uyğun müştərilər
+
+Next Purchase Day Analizi
+Müştərilərin alış aralığı hesablanaraq qruplaşdırıldı:
+0–30 gün                30–60 gün            60+ gün
+
+Marketinq kampaniyalarının düzgün zamanlanması üçün optimallaşdırma imkanı yaradır.
+
+ Cohort Analizi
+
+Müştərilər ilk alış etdikləri aya görə qruplaşdırıldı
+Hər cohortun retention faizi izlənildi
+Davranış nümunələri və loyallıq səviyyələri təyin edildi
+ Market Basket / Cross-Selling Analizi
+
+Birlikdə ən çox alınan məhsullar təyin edildi
+Bundle və cross-sell kampaniyaları üçün tövsiyələr formalaşdırıldı
+Marketinq & Gəlir Təsiri
+Aylıq marketinq xərcləri və gəlir müqayisə edildi
+ROI və xərclərin effektivliyi ölçüldü
+Online vs Offline marketinqin effektivliyi analiz edildi
+ Əsas KPI-lar
+Revenue
+Average Order Value (AOV)
+Profit Margin
+Purchase Frequency
+Repeat Rate
+Churn Rate
+Customer Lifetime Value (LTV)
+
+ Business Impact
+Marketinq strategiyası RFM və LTV nəticələrinə əsasən formalaşdırıldı
+Endirim kampaniyalarının real təsiri ölçüldü
+Cohort və Next Purchase Day nəticələri retention-i artırmağa imkan verdi
+Cross-selling fürsətləri müəyyən edildi və gəlirin optimallaşdırılması mümkün oldu
